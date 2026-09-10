@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="1cw384TKLa_7h-In3IEHSP34mS6juna6wdPCLUOZ1Xo">
+  <meta name="description" content="Mantoa Selepe of Mantoa Consulting provides WordPress development, website maintenance, SEO setup, WooCommerce integration, hosting support, and digital website services.">
+  <title>Mantoa Selepe | Mantoa Consulting</title>
+  <style>
+    :root {
+      --bg: #081120;
+      --bg-soft: #0f172a;
+      --panel: rgba(15, 23, 42, 0.82);
+      --panel-strong: #132238;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --line: rgba(148, 163, 184, 0.18);
+      --primary: #60a5fa;
+      --primary-strong: #3b82f6;
+      --accent: #22c55e;
+      --shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.16), transparent 32%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 22%),
+        linear-gradient(180deg, #06101d 0%, #0b1220 100%);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 17, 32, 0.72);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--primary);
+    }
+
+    main {
+      display: block;
+    }
+
+    section {
+      padding: 5.5rem 0;
+    }
+
+    .hero {
+      padding: 6rem 0 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .about-card,
+    .contact-card,
+    .service-card,
+    .highlight-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 3rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.25);
+      background: rgba(96, 165, 250, 0.08);
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy p {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.85rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button {
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      color: #ffffff;
+      box-shadow: 0 16px 28px rgba(59, 130, 246, 0.25);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+    }
+
+    .button:hover,
+    .button-secondary:hover,
+    .button:focus-visible,
+    .button-secondary:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      list-style: none;
+    }
+
+    .hero-tags li {
+      padding: 0.6rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      background: rgba(15, 23, 42, 0.72);
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .hero-panel {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .hero-panel h2,
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-panel p,
+    .section-heading p,
+    .about-card p,
+    .highlight-card p,
+    .contact-card p,
+    .service-card p {
+      color: var(--muted);
+    }
+
+    .panel-list {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .panel-list li {
+      padding: 1rem 1rem 1rem 1.1rem;
+      background: rgba(8, 17, 32, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      border-radius: var(--radius-sm);
+      color: #dbeafe;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+    }
+
+    .about-card,
+    .contact-card {
+      padding: 2rem;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .highlight-card {
+      padding: 1.4rem;
+    }
+
+    .highlight-card h3,
+    .service-card h3,
+    .contact-card h3 {
+      font-size: 1.1rem;
+      color: #ffffff;
+      margin-bottom: 0.7rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      padding: 1.6rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .service-card li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: #cbd5e1;
+    }
+
+    .service-card li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .contact-card a {
+      color: #bfdbfe;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .contact-list li {
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(8, 17, 32, 0.55);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+    }
+
+    .contact-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      color: #ffffff;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 2rem 0 3rem;
+      color: #64748b;
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .services-grid,
+      .highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .about-card,
+      .contact-card {
+        padding: 1.6rem;
+      }
+
+      section {
+        padding: 4.5rem 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 0.9rem;
+      }
+
+      .hero {
+        padding: 4.8rem 0 3.5rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .button,
+      .button-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <a href="#top" class="brand-name">Mantoa Selepe</a>
+        <span class="brand-subtitle">Mantoa Consulting</span>
+      </div>
+
+      <nav aria-label="Primary navigation" class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">WordPress Development & Digital Support</span>
+          <h1>Professional websites that are clean, functional, and built to grow.</h1>
+          <p>
+            I help businesses and individuals
+            build, manage, and improve WordPress websites with dependable development, maintenance,
+            SEO support, and digital setup services.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#contact">Let’s work together</a>
+            <a class="button-secondary" href="mailto:mantoarselepe@gmail.com">Email Mantoa</a>
+          </div>
+
+          <ul class="hero-tags" aria-label="Service specialties">
+            <li>Custom WordPress Builds</li>
+            <li>SEO Setup</li>
+            <li>WooCommerce</li>
+            <li>Hosting & Maintenance</li>
+          </ul>
+        </div>
+
+        <aside class="hero-panel" aria-label="Key service focus">
+          <div>
+            <h2>Practical website support from launch to long-term growth.</h2>
+            <p>
+              From first setup to ongoing improvements, each service is focused on helping your
+              website stay professional, visible, and easy to manage.
+            </p>
+          </div>
+
+          <ul class="panel-list">
+            <li>Custom website design and WordPress development</li>
+            <li>Website migrations, hosting, backups, and maintenance</li>
+            <li>Technical SEO, search visibility, and indexing support</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">About</span>
+          <p>
+           <h2> Mantoa Consulting delivers WordPress and digital development services for clients who
+            need a website that looks professional, works reliably, and supports real business goals.<h2>
+              
+          </p>
+              
+        </div>
+
+        <div class="about-grid">
+          <article class="about-card">
+            <p>
+              I work with businesses and individuals who want more than just a website online.
+              My focus is on building and supporting websites that are user-friendly, well-structured,
+              and ready for ongoing growth. Whether you need a fresh WordPress build, a technical
+              fix, better search visibility, or dependable support, I provide practical solutions that
+              keep your digital presence moving forward.
+            </p>
+          </article>
+
+          <div class="highlights">
+            <article class="highlight-card">
+              <h3>Development</h3>
+              <p>Custom builds, theme updates, frontend work, backend setup, and plugin integration.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Infrastructure</h3>
+              <p>Hosting setup, migrations, backups, maintenance, and ongoing website management.</p>
+            </article>
+            <article class="highlight-card">
+              <h3>Visibility</h3>
+              <p>SEO configuration, Search Console setup, indexing support, and on-page optimization.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Services</span>
+          <h2>Full-service WordPress and digital website support.</h2>
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Core WordPress Development</h3>
+            <p>Flexible development support for new builds, upgrades, and custom functionality.</p><ul>
+              <li>Custom WordPress Website Design & Development</li>
+              <li>Frontend Development (HTML, CSS, Elementor, Gutenberg)</li>
+              <li>Backend Development (Custom Post Types, Plugins, APIs)</li>
+              <li>Theme Customization</li>
+              <li>WordPress Installation & Configuration</li>
+              <li>Plugin Integration</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>Website Infrastructure, Hosting & Maintenance</h3>
+            <p>Reliable support to keep your site stable, secure, and easy to manage.</p><ul>
+              <li>Domain & Hosting Setup</li>
+              <li>WordPress Hosting Management</li>
+              <li>Website Migration</li>
+              <li>Website Maintenance & Support</li>
+              <li>Website Backup Configuration</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>SEO & Search Visibility</h3>
+            <p>Technical improvements that help your site get discovered and indexed correctly.</p><ul>
+              <li>Technical SEO Setup</li>
+              <li>On-Page SEO Optimization</li>
+              <li>Google Search Console Setup</li>
+              <li>Website Indexing Management</li>
+              <li>SEO Plugin Configuration</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>E-Commerce & Online Payments</h3>
+            <p>Support for selling products, collecting payments, and handling digital transactions online.</p><ul>
+              <li>WooCommerce Setup</li>
+              <li>Payment Gateway Integration</li>
+              <li>Donation & Payment Solutions</li>
+              <li>Digital Product Websites</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>Google AdSense & Website Advertising</h3>
+            <p>Implementation support for ads, monetization, and custom website advertising placements.</p><ul>
+              <li>Google AdSense Setup</li>
+              <li>Ad Placement & Integration</li>
+              <li>HTML Advertising Integration</li>
+              <li>Advertising Code Implementation</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <h3>Ongoing Digital Support</h3>
+            <p>Longer-term help for businesses that need steady website care and technical guidance.</p><ul>
+              <li>Website Management</li>
+              <li>Website Updates & Improvements</li>
+              <li>Technical Support</li>
+              <li>Website Development Retainer</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <span class="section-label">Contact</span>
+          <h2>Ready to improve your website?</h2>
+          <p>
+            If you need a professional WordPress website, technical improvements, or dependable
+            long-term support, get in touch and let’s talk about your next step.
+          </p>
+        </div>
+
+        <aside class="contact-card">
+          <h3>Get in touch</h3><ul class="contact-list">
+            <li>
+              <span class="contact-label">Phone</span>
+              <a class="contact-value" href="tel:+27783095331">+27 78 309 5331</a>
+            </li>
+            <li>
+              <span class="contact-label">Email</span>
+              <a class="contact-value" href="mailto:mantoarselepe@gmail.com">mantoarselepe@gmail.com</a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © Mantoa Consulting · Building professional WordPress websites and digital solutions
+    </div>
+  </footer>
+</body>
+</html>
